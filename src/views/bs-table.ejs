@@ -1,0 +1,95 @@
+<%- include('components/head') %>
+<%- include('components/header') %>
+<div class="container">
+    <div class="row justify-content-between">
+        <div class="col-auto">
+            <h1>Users</h1>
+        </div>
+
+        <div class="col-auto">
+            <button class="btn btn-primary create-modal" data-url="user" data-bs-toggle="modal" data-bs-target="#user-modal"><i class="bi bi-plus"></i></button>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <table class="table"
+                data-toggle="table"
+                data-url="api/read/users"
+       data-page-list="[10, 25, 50]"
+       data-search="true"
+       data-side-pagination="server"
+       data-pagination="true"
+       data-show-toggle="true"
+       data-show-fullscreen="true"
+       data-show-columns="true"
+       data-unique-id="id"
+       data-search-highlight="true"
+       data-show-refresh="true"
+       data-filter-control="true"
+       data-show-print="true"
+       data-header-style="headerStyle">
+                    <thead>
+                        <tr>
+                            <th data-field="name">Name</th>
+                            <th data-field="mobile">Mobile</th>
+                            <th data-field="email">Email</th>
+                        </tr>
+                    </thead>
+<!-- 
+                    <tbody>
+                      <% users.forEach(function(user){ %> 
+                        <tr id="row-<%= user.id %>">
+                          <td><%= user.name %></td>
+                          <td><%= user.mobile %></td>
+                          <td><%= user.email %></td>
+                          <td>
+                            <i data-url='user?id=<%= user.id %>' class="bi bi-pencil-square fs-5 text-success edit"></i>
+                            <i data-url='user?id=<%= user.id %>' class="bi bi-trash3 text-danger fs-5 delete-row"></i>
+                          </td>
+                      </tr>
+                        <% }) %>
+                        
+                    </tbody> -->
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="user-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <form method="post" action="/api/create/user">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">User <span>Create</span></h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input type="text" name="name" class="form-control">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Mobile</label>
+                <input type="number" name="mobile" class="form-control">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" name="email" class="form-control">
+              </div>
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </form>
+          </div>
+        </div>
+      </div>
+<%- include('components/scripts') %>
+    
